@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import React, {Component} from "react";
+import Product from "./Components/Product";
+import ProductDetails from "./Components/ProductDetails";
+import {productsData} from './fakeData/product'
+class App extends Component{
+  state={
+    products: [...productsData],
+    clickedProduct: {}
+  }
+  getClickedProduct = (product)=>{
+    this.setState({
+      clickedProduct: product
+    })
+  }
+  render(){
+    const clickedProduct = this.state.clickedProduct
+    return<div>
+      {
+       !Object.keys(clickedProduct).length
+       ?<Product products={this.state.products} getClickedProduct={this.getClickedProduct}/>
+       :<ProductDetails clickedProduct={this.state.clickedProduct} getClickedProduct={this.getClickedProduct}/>
+      }
     </div>
-  );
+  }
 }
 
 export default App;
