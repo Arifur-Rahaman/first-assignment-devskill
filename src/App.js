@@ -14,13 +14,15 @@ class App extends Component{
   }
   render(){
     const clickedProduct = this.state.clickedProduct
-    return<div>
-      {
-       !Object.keys(clickedProduct).length
-       ?<Product products={this.state.products} getClickedProduct={this.getClickedProduct}/>
-       :<ProductDetails clickedProduct={this.state.clickedProduct} getClickedProduct={this.getClickedProduct}/>
-      }
-    </div>
+    return(
+      <div>
+          {
+            !Object.keys(clickedProduct).length
+            ?<Product products={this.state.products} getClickedProduct={this.getClickedProduct}/>
+            :<ProductDetails clickedProduct={this.state.clickedProduct} getClickedProduct={this.getClickedProduct}/>
+          }
+      </div>
+    )
   }
 }
 
