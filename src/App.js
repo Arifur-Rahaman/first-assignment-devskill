@@ -1,29 +1,20 @@
-import React, {Component} from "react";
+import { useState } from "react";
 import Product from "./Components/Product";
 import ProductDetails from "./Components/ProductDetails";
 import {productsData} from './fakeData/product'
-class App extends Component{
-  state={
-    products: [...productsData],
-    clickedProduct: {}
-  }
-  getClickedProduct = (product)=>{
-    this.setState({
-      clickedProduct: product
-    })
-  }
-  render(){
-    const clickedProduct = this.state.clickedProduct
-    return(
-      <div>
-          {
-            !Object.keys(clickedProduct).length
-            ?<Product products={this.state.products} getClickedProduct={this.getClickedProduct}/>
-            :<ProductDetails clickedProduct={this.state.clickedProduct} getClickedProduct={this.getClickedProduct}/>
-          }
-      </div>
-    )
-  }
+function App() {
+  const [products, setProducts] = useState([...productsData]);
+  const [clickedProduct, setClickedProduct] = useState({});
+  return (
+ 
+    <div>
+         {
+           !Object.keys(clickedProduct).length
+           ?<Product products={products} setClickedProduct={setClickedProduct}/> 
+           :<ProductDetails clickedProduct={clickedProduct} setClickedProduct={setClickedProduct}/>
+         }
+    </div>
+  );
 }
 
 export default App;
