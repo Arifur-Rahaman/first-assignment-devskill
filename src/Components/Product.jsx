@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Loader from './Loader'
+import React from 'react';
 
 const buttonStyle = {
     all: 'unset',
@@ -11,23 +10,15 @@ const buttonStyle = {
     padding: '30px',
 }
 
-const Product = ({products, setClickedProduct}) => {
-    const [loader, setLoader] = useState(true);
-    useEffect(()=>{
-        setTimeout(()=>{
-            setLoader(false)
-        }, 500)
-    }, [])
+const Product = ({products, setProductDetail}) => {
     return (
         <div>
             {
-                loader
-                ? <Loader></Loader>
-                :products.map(product=>{
+                products.map(product=>{
                     const {name, price, key, img} = product;
                     return(
                         <div key={key} style={{padding: '40px', width: '90%'}}>
-                                <button onClick={()=>setClickedProduct(product)} style={buttonStyle}>
+                                <button onClick={()=>setProductDetail(product)} style={buttonStyle}>
                                     <img src={img} alt=''></img>
                                     <h2>{name}</h2>
                                     <h3>{price}$</h3>
